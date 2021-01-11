@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Activity</title>
+    <script>
+        function enter() {
+            userInput = document.getElementById('inputText').value;
+
+            console.log(userInput);
+
+            document.getElementById('team').innerHTML = userInput;
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Team Activity</h1>
+    <input id="inputText" type="text">
+    <button onclick="enter()">Enter</button>
+    <div id="team"></div>
+</body>
+
+</html>
