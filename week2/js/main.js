@@ -1,3 +1,5 @@
+//Quiz Ninja - Chapter 3 activity (Arrays, Loops, Logic)
+
 const quiz = [
     ["What is Superman's real name?", "Clark Kent"],
     ["What is Wonder Woman's real name?", "Diana Prince"],
@@ -17,6 +19,8 @@ for (const [question, answer] of quiz) {
 }
 
 alert(`Game Over, you scored ${score} point${score !== 1 ? 's' : ''}`);
+
+//Quiz Ninja - Chapter 2 activity
 
 //const question = "What is Superman's real name?"
 //const answer = prompt(question);
