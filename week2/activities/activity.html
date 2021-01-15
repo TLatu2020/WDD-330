@@ -14,12 +14,15 @@
         }
 
         function numbers() {
+            //Gets the user's input.
             userInput = document.getElementById('inputTwo').value;
+            //If user input meets requirement, numbers are added together and displayed. Else error is printed.
             if (isNaN(userInput) == false) {
                 let total = 0;
                 for (i = 1; i <= userInput; i++) {
                     total += i;
                 }
+                //Displays the user input
                 document.getElementById('displayTwo').innerHTML = total;
             } else {
                 document.getElementById('displayTwo').innerHTML = "Error! Input must be a number";
@@ -28,11 +31,12 @@
         }
 
         function more() {
-            //Everything is still string so it does not add things properly.
-            const input1 = document.getElementById('inputOne').value;
-            const input2 = document.getElementById('inputTwo').value;
-            const input3 = document.getElementById('inputThree').value;
+            //Gets the inputs from the user and converts them to an Integer for the next step
+            const input1 = parseInt(document.getElementById('inputOne').value);
+            const input2 = parseInt(document.getElementById('inputTwo').value);
+            const input3 = parseInt(document.getElementById('inputThree').value);
 
+            //If loop that checks if the inputs are numbers. If condition is met the inputs are added to gether or else error is printed.
             if (isNaN(input1) == false && isNaN(input2) == false && isNaN(input3) == false) {
                 document.getElementById('displayThree').innerHTML = input1 + input2 + input3;
             } else {
