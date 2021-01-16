@@ -5,45 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Activity</title>
-    <script>
-        function enter() {
-            userInput = document.getElementById('inputOne').value;
-            console.log(userInput);
 
-            document.getElementById('displayOne').innerHTML = userInput;
-        }
-
-        function numbers() {
-            //Gets the user's input.
-            userInput = document.getElementById('inputTwo').value;
-            //If user input meets requirement, numbers are added together and displayed. Else error is printed.
-            if (isNaN(userInput) == false) {
-                let total = 0;
-                for (i = 1; i <= userInput; i++) {
-                    total += i;
-                }
-                //Displays the user input
-                document.getElementById('displayTwo').innerHTML = total;
-            } else {
-                document.getElementById('displayTwo').innerHTML = "Error! Input must be a number";
-            }
-
-        }
-
-        function more() {
-            //Gets the inputs from the user and converts them to an Integer for the next step
-            const input1 = parseInt(document.getElementById('inputOne').value);
-            const input2 = parseInt(document.getElementById('inputTwo').value);
-            const input3 = parseInt(document.getElementById('inputThree').value);
-
-            //If loop that checks if the inputs are numbers. If condition is met the inputs are added to gether or else error is printed.
-            if (isNaN(input1) == false && isNaN(input2) == false && isNaN(input3) == false) {
-                document.getElementById('displayThree').innerHTML = input1 + input2 + input3;
-            } else {
-                document.getElementById('displayThree').innerHTML = "All inputs must be numbers!";
-            }
-        }
-    </script>
 </head>
 
 <body>
@@ -64,6 +26,90 @@
     <button onclick="more()">+</button>
     <div id="displayThree"></div>
 
+    <h2>Stretch Calculator</h2>
+    <input type="number" id="numOne">
+    <input type="number" id="numTwo">
+    <button id="add" onclick="performOperation(addNum)">+</button>
+    <button id="sub" onclick="performOperation(subNum)">-</button>
+    <button id="multi" onclick="performOperation(multiNum)">*</button>
+    <div id="displayStretch"></div>
+
+
+    <script>
+        //Requirement 1
+        function enter() {
+            userInput = document.getElementById('inputOne').value;
+            console.log(userInput);
+
+            document.getElementById('displayOne').innerHTML = userInput;
+        }
+
+        //Requirement 2
+        function numbers() {
+            //Gets the user's input.
+            userInput = document.getElementById('inputTwo').value;
+            //If user input meets requirement, numbers are added together and displayed. Else error is printed.
+            if (isNaN(userInput) == false) {
+                let total = 0;
+                for (i = 1; i <= userInput; i++) {
+                    total += i;
+                }
+                //Displays the user input
+                document.getElementById('displayTwo').innerHTML = total;
+            } else {
+                document.getElementById('displayTwo').innerHTML = "Error! Input must be a number";
+            }
+
+        }
+
+        //Requirement 3
+        function more() {
+            //Gets the inputs from the user and converts them to an Integer for the next step
+            const input1 = parseInt(document.getElementById('inputOne').value);
+            const input2 = parseInt(document.getElementById('inputTwo').value);
+            const input3 = parseInt(document.getElementById('inputThree').value);
+
+            //If loop that checks if the inputs are numbers. If condition is met the inputs are added to gether or else error is printed.
+            if (isNaN(input1) == false && isNaN(input2) == false && isNaN(input3) == false) {
+                document.getElementById('displayThree').innerHTML = input1 + input2 + input3;
+            } else {
+                document.getElementById('displayThree').innerHTML = "All inputs must be numbers!";
+            }
+        }
+
+        //Stretch Goal
+        function getNum(numId) {
+            const number = document.getElementById(numId).value;
+            const numberFloat = parseFloat(number);
+            if (numberFloat !== NaN) {
+                return numberFloat;
+            } else return 0;
+
+        }
+
+        function updateTotal(value) {
+            const outputElement = document.getElementById('displayStretch');
+            outputElement.innerHTML = 'Total: ' + value;
+        }
+
+        function addNum(num1, num2) {
+            return num1 + num2;
+        }
+
+        const subNum = function(num1, num2) {
+            return num1 - num2;
+        }
+
+        const multiNum = (num1, num2) => num1 * num2;
+
+        function performOperation(operation) {
+            const total = operation(
+                getNum('numOne'),
+                getNum('numTwo')
+            );
+            updateTotal(total);
+        }
+    </script>
 </body>
 
 </html>
