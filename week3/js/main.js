@@ -33,3 +33,5 @@ const game = {
         alert(`Game Over, you scored ${this.score} point${this.score !== 1 ? 's' : ''}`);
     }
 }
+
+game.start(quiz);
