@@ -7,44 +7,6 @@ const quiz = [
     { name: "Batman", realName: "Bruce Wayne" },
 ];
 
-
-
-const game = {
-    start(quiz) {
-        this.questions = [...quiz];
-        this.score = 0;
-        //main game loop
-        for (const question of this.questions) {
-            this.question = question;
-            this.ask();
-        }
-        this.gameOver();
-    },
-    ask() {
-        const question = `What is ${this.question.name}'s real name?`;
-        view.render(view.question, question);
-        const response = prompt(question);
-        this.check(response);
-    },
-    check(response) {
-        const answer = this.question.realName;
-        if (response === answer) {
-            view.render(view.result, 'Correct!', { 'class': 'correct' });
-            alert('Correct!');
-            this.score++;
-            view.render(view.score, this.score);
-        } else {
-            view.render(view.result, `Wrong! The correct answer was ${answer}`, { 'class': 'wrong' });
-            alert(`Wrong! The correct answer was ${answer}`);
-        }
-    },
-    gameOver() {
-        view.render(view.info, `Game Over, you scored ${this.score} point${this.score !== 1 ? 's' : ''}`);
-
-        view.show(view.start);
-    }
-}
-
 const view = {
 
     start: document.getElementById('start'),
@@ -68,7 +30,47 @@ const view = {
     }
 
 };
+
+
+const game = {
+    start(quiz) {
+        this.questions = [...quiz];
+        this.score = 0;
+
+        //main game loop
+        for (const question of this.questions) {
+            this.question = question;
+            this.ask();
+        }
+        view.hide(view.start);
+        this.gameOver();
+
+    },
+    ask() {
+        const question = `What is ${this.question.name}'s real name?`;
+        view.render(view.question, question);
+        const response = prompt(question);
+        this.check(response);
+    },
+    check(response) {
+        const answer = this.question.realName;
+        if (response === answer) {
+            view.render(view.result, 'Correct!', { 'class': 'correct' });
+            alert('Correct!');
+            this.score++;
+            view.render(view.score, this.score);
+        } else {
+            view.render(view.result, `Wrong! The correct answer was ${answer}`, { 'class': 'wrong' });
+            alert(`Wrong! The correct answer was ${answer}`);
+        }
+    },
+    gameOver() {
+        view.render(view.info, `Game Over, you scored ${this.score} point${this.score !== 1 ? 's' : ''}`);
+        view.show(view.start);
+    }
+}
+
+
 view.start.addEventListener('click', () => game.start(quiz), false);
 
 game.start(quiz);
-//view.hide(view.start);
