@@ -28,7 +28,7 @@ const hikeList = [{
 ];
 
 
-const imgBasePath = "//byui-cit.github.io/cit261/example/";
+const imgBasePath = "//byui-cit.github.io/cit261/examples/";
 
 export default class Hikes {
     constructor(elementId) {
@@ -44,25 +44,57 @@ export default class Hikes {
         return this.getAllHikes().find(hike => hike.name === hikeName);
     }
 
-    showHikeList() {}
+    //guidance with this part
+    showHikeList() {
+        this.parentElement.innerHTML = '';
 
-    showOneHike(hikeName) {}
+        renderHikeList(this.parentElement, this.getAllHikes());
+        this.addHikeListener();
+
+        this.backButton.classList.add('hidden');
+    }
+
+    showOneHike(hikeName) {
+        const hike = this.getHikeByName(hikeName);
+        this.parentElement.innerHTML = '';
+        this.parentElement.appendChild(renderOneHikeFull(hike));
+
+        this.backButton.classList.remove('hidden');
+
+    }
 
     addHikeListener() {
-
+        const childrenArray = Array.from(this.parentElement.children);
+        childrenArray.forEach(child => {
+            child.addEventListener('click', e => {
+                this.showOneHike(e.currentTarget.dataset.name);
+            });
+        });
     }
 
     buildBackButton() {
         const backButton = document.createElement("button");
-
+        backButton.innerHTML = '&lt;- All Hikes';
+        backButton.addEventListener('click', () => {
+            this.showHikeList();
+        });
+        backButton.classList.add('hidden');
+        this.parentElement.before(backButton);
         return backButton;
     }
 }
 
-function renderHikeList(parent, hikes) {}
 
+function renderHikeList(parent, hikes) {
+    hikes.forEach(hike => {
+        parent.appendChild(renderOneHikeLight(hike));
+    });
+}
+//guide ends here
 function renderOneHikeLight(hike) {
     const item = document.createElement("li");
+    item.classList.add('light');
+    item.setAttribute('data-name', hike.name);
     item.innerHTML = `<h2>${hike.name}</h2>
     <div class="image"><img src="${imgBasePath}${hike.imgSrc}" alt="${hike.imgAlt}"></div>
     <div>
@@ -80,7 +112,25 @@ function renderOneHikeLight(hike) {
 }
 
 function renderOneHikeFull(hike) {
-    const item = document.createElement("li");
+    const items = document.createElement("li");
+    items.innerHTML = `
+    
+    <img src="${imgBasePath}${hike.imgSrc}" alt="${hike.imgAlt}">
+    <h2>${hike.name}</h2>
+    <div>
+        <h3>Distance</h3>
+        <p>${hike.distance}</p>
+    </div>
+    <div>
+        <h3>Description</h3>
+        <p>${hike.description}</p>
+    </div>
+    <div>
+        <h3>How to get there</h3>
+        <p>${hike.directions}</p>
+    </div>
 
-    return item;
+    `;
+
+    return items;
 }
