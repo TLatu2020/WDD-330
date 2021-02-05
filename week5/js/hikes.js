@@ -90,6 +90,7 @@ function renderHikeList(parent, hikes) {
         parent.appendChild(renderOneHikeLight(hike));
     });
 }
+
 //guide ends here
 function renderOneHikeLight(hike) {
     const item = document.createElement("li");
