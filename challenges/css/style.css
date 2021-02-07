@@ -1,0 +1,23 @@
+body {
+    max-width: 450px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+}
+
+form input {
+    text-align: center;
+    padding: .65rem;
+    width: 65%;
+}
+
+form button {
+    max-width: 45px;
+}
