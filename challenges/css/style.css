@@ -1,15 +1,19 @@
 body {
     max-width: 450px;
     margin: auto;
+    background-color: #e7d9d9;
 }
 
 h1 {
     text-align: center;
+    font-family: 'Roboto Slab', serif;
 }
 
 form {
     display: flex;
     justify-content: center;
+    padding: 10px;
+    background-color: #1d185c;
 }
 
 form input {
@@ -19,5 +23,5 @@ form input {
 }
 
 form button {
-    max-width: 45px;
+    width: 45px;
 }
