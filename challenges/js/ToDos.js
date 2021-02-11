@@ -9,15 +9,31 @@ export default class ToDos {
 
         this.key = key;
 
-        utilities.onEnter('#add', this.addTodo);
+        utes.onEnter('#add', this.addTodo);
     }
 
     addTodo() {
-        const task = document.getElementById('new-item').value;
+        const task = document.getElementById('addTodo').value;
 
         saveToDo(task, 'myList');
 
         this.listTodos();
+    }
+
+    listTodo() {
+        renderTodoList(getTodos("myList"), this.elementId);
+    }
+
+    completeTodo() {
+
+    }
+
+    removeTodo() {
+
+    }
+
+    filterTodo() {
+
     }
 
 }
