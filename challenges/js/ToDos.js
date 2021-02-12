@@ -28,23 +28,22 @@ export default class ToDos {
         renderTodoList(getTodos('myList'), this.elementId);
     }
 
-    completeTodo(todoID) {
-        const index = todoList.findIndex(item => item.id === Number(todoID))
-        console.log(todoID);
-        todoList[index].completed = !todoList[index].completed;
+    completeTodo(list) {
+        list = todoList;
 
-        this.listTodos();
 
+        console.log(list);
     }
 
-    removeTodo() {
-
+    removeTodo(todoID) {
+        const index = todoList.findIndex(item => item.id === Number(todoID));
+        todoList.splice(index, 1);
+        storage.writeStorage(this.key, todoList);
+        this.listTodos();
     }
 
     filterTodo() {
 
-
-        utes.onEnter("")
     }
 
 }
@@ -86,9 +85,9 @@ function renderTodoList(list, element) {
             let todo = document.createElement('li');
 
             todo.innerHTML = `
-            <input id="${item.id}" type="checkbox" class="checkItem" />
+            <i class="fa fa-circle-thin co" id="${item.id}"></i>
             <p>${item.content}</p>
-            <button class="deleteBtn">X</button>
+            <i class="fa fa-trash-o de"></i>
             `;
 
             element.appendChild(todo);
@@ -96,36 +95,4 @@ function renderTodoList(list, element) {
 
         })
     }
-
-    // if (list != null) {
-    //     list.forEach(todo => {
-    //         element.appendChild(renderTodo(todo));
-    //     })
-    // }
 }
-
-// function renderTodo(todo) {
-//     const completed = todo.completed ? 'done' : '';
-//     const items = document.createElement('li');
-
-//     items.setAttribute('class', `todo-item ${completed}`);
-//     items.setAttribute('data-key', todo.id);
-
-//     if (completed == 'done') {
-//         items.innerHTML = `
-//             <input id="${todo.id}" type="checkbox" class="checked" checked>
-//         `;
-//     } else {
-//         listItem.innerHTML = `
-//             <input id=${todo.id}" type="checkbox" class="checked">
-//         `;
-//     };
-
-//     items.innerHTML += `
-//         <label for="${todo.id}" class="tickbox"></label>
-//         <span>${todo.content}</span>
-//         <button class="delete-button">X</button>
-//     `;
-
-//     return items;
-// }
