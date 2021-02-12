@@ -4,7 +4,7 @@ function writeStorage(key, data) {
 
 function readStorage(key) {
     let item = localStorage.getItem(key);
-    return JSPON.parse(item);
+    return JSON.parse(item);
 }
 
 export { writeStorage, readStorage };

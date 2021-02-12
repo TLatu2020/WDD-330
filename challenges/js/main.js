@@ -1,6 +1,6 @@
 import ToDos from './ToDos.js';
 
-const toDo = new ToDos();
+const toDo = new ToDos("#list", "myList");
 
 toDo.listTodos();
 

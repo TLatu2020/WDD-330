@@ -25,3 +25,10 @@ form input {
 form button {
     width: 45px;
 }
+
+ul li {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
