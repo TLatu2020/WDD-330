@@ -26,9 +26,17 @@ form button {
     width: 45px;
 }
 
+ul {
+    padding: 0;
+}
+
 ul li {
     list-style-type: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.lineThrough {
+    text-decoration: line-through;
 }

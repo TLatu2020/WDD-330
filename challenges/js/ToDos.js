@@ -3,6 +3,10 @@ import * as utes from './utilities.js';
 
 let todoList = null;
 
+const CHECK = "fa-check-circle";
+const UNCHECK = "fa-circle-thin";
+const LINE_THROUGH = "lineThrough";
+
 export default class ToDos {
     constructor(elementId, key) {
         this.elementId = utes.selecting(elementId);
@@ -15,6 +19,7 @@ export default class ToDos {
     }
 
     addTodo() {
+
         const task = document.getElementById('addTodo').value;
 
         saveToDo(task, 'myList');
@@ -26,21 +31,18 @@ export default class ToDos {
 
     listTodos() {
         renderTodoList(getTodos('myList'), this.elementId);
+
     }
 
     completeTodo(list) {
-        list = todoList;
 
-
-        console.log(list);
     }
 
-    removeTodo(todoID) {
-        const index = todoList.findIndex(item => item.id === Number(todoID));
-        todoList.splice(index, 1);
-        storage.writeStorage(this.key, todoList);
-        this.listTodos();
+    removeTodo(list) {
+
     }
+
+
 
     filterTodo() {
 
@@ -69,30 +71,38 @@ function getTodos(key) {
         let items = storage.readStorage(key);
 
         todoList = items;
-
-
     }
 }
+
 
 function renderTodoList(list, element) {
     list = todoList;
 
-    if (list != null) {
+    list.forEach(item => {
 
-        list.forEach(item => {
+        const LINE = LINE_THROUGH;
+        const complete = item.completed ? true : false;
 
-            element = document.getElementById('list');
-            let todo = document.createElement('li');
+        element = document.getElementById('list');
+        let todo = document.createElement('li');
 
+        if (complete == true) {
             todo.innerHTML = `
-            <i class="fa fa-circle-thin co" id="${item.id}"></i>
-            <p>${item.content}</p>
-            <i class="fa fa-trash-o de"></i>
+            <input id="${item.id}" type="checkbox" class="checks" checked>
+            <p class="${LINE}">${item.content}</p>
+            <button class="deleteBtn">X</button>
             `;
 
             element.appendChild(todo);
+        } else if (complete == false) {
+            todo.innerHTML = `
+            <input id="${item.id}" type="checkbox" class="checks"/>
+            <p>${item.content}</p>
+            <button class="deleteBtn">X</button>`;
+
+            element.appendChild(todo);
+        }
+    })
 
 
-        })
-    }
 }
