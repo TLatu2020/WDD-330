@@ -13,30 +13,22 @@
 <body>
     <!-- <h1>ToDo</h1> -->
     <main>
-        <div class="app">
-            <section>
-                <h1>Todos</h1>
-            </section>
-            <section>
-                <div class="main-container">
-                    <ul id="list-container">
-                    </ul>
-                    <div class="footer-list">
-                        <div class="left">
-                            3 task left
-                        </div>
-                        <button data-id="all" class="all">All</button>
-                        <button data-id="active" class="active">Active</button>
-                        <button data-id="completed" class="completed">Completed</button>
-                    </div>
+        <h1>ToDos</h1>
+        <div>
+            <ul id="list">
+            </ul>
+            <div class="footer-list">
+                <div class="left">
                 </div>
-            </section>
-            <footer>
-                <div> Add todo: </div>
-                <input class="new" id="new" type="text" />
-                <button class="add">+</button>
-            </footer>
+                <button data-id="all" class="all">All</button>
+                <button data-id="active" class="active">Active</button>
+                <button data-id="completed" class="completed">Completed</button>
+            </div>
         </div>
+        <form>
+            <input class="new" id="new" type="text" placeholder="Add a ToDo" autofocus/>
+            <button class="add">+</button>
+        </form>
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 

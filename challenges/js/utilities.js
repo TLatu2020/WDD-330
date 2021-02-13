@@ -8,29 +8,17 @@ function qsAll(selector) {
 }
 
 
-function onTouch(elementSelector, callback) {
+function onEnter(elementSelector, callback) {
     const element = qs(elementSelector);
     element.addEventListener("click", callback);
-    element.addEventListener("touchend", callback)
+
 }
 
 function setCallbacks(selector, callback) {
     const elements = qsAll(selector);
     Array.from(elements).forEach(ele => {
-        onTouch('#' + ele.id, callback);
+        onEnter('#' + ele.id, callback);
     });
 }
 
-export { qs, setCallbacks, onTouch };
-
-// function selecting(selector) {
-//     return document.querySelector(selector);
-// }
-
-// function onEnter(querySelector, callback) {
-//     let e = selecting(querySelector);
-
-//     e.addEventListener('click', callback);
-// }
-
-// export { selecting, onEnter };
+export { qs, setCallbacks, onEnter };

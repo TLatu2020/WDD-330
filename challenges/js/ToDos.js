@@ -1,5 +1,5 @@
 import { writeToLS, readFromLS } from './ls.js';
-import { qs, setCallbacks, onTouch } from './utilities.js';
+import { qs, setCallbacks, onEnter } from './utilities.js';
 
 let todoList = null;
 
@@ -39,15 +39,15 @@ export default class Todos {
         this.setCallbacks();
     }
 
-    filterTodos() {
+    filterTodos(event) {
         const id = event.target.dataset.id
-        this.todoList.forEach(ele => {
-            if (id === 'active' && ele.completed) {
-                ele.hide = true
-            } else if (id === 'completed' && !ele.completed) {
-                ele.hide = true;
+        this.todoList.forEach(item => {
+            if (id === 'active' && item.completed) {
+                item.hide = true
+            } else if (id === 'completed' && !item.completed) {
+                item.hide = true;
             } else {
-                ele.hide = false;
+                item.hide = false;
             }
         });
         const listElement = qs('.footer-list');
@@ -65,14 +65,14 @@ export default class Todos {
     }
 
     init() {
-        onTouch('.add', this.addTodo.bind(this));
-        onTouch('.all', this.filterTodos.bind(this));
-        onTouch('.active', this.filterTodos.bind(this));
-        onTouch('.completed', this.filterTodos.bind(this));
+        onEnter('.add', this.addTodo.bind(this));
+        onEnter('.all', this.filterTodos.bind(this));
+        onEnter('.active', this.filterTodos.bind(this));
+        onEnter('.completed', this.filterTodos.bind(this));
     }
 
     get remains() {
-        return this.todoList.filter(ele => !ele.completed).length;
+        return this.todoList.filter(item => !item.completed).length;
     }
 }
 
@@ -100,14 +100,24 @@ function getTodos(key) {
 
 function renderTodoList(list, element) {
     element.innerHTML = '';
-    list.forEach((ele, indx) => {
-        if (!ele.hide) {
-            const li = document.createElement('li');
-            li.id = indx;
-            li.innerHTML = ` <input class="${ele.completed ? "checkbox done" : 'checkbox'}" id="checkbox-${indx}" data-id=${indx} type="checkbox">
-                <div class="${ele.completed ? "detail done" : 'detail'}" >${ele.content}</div>
+    list.forEach((item, indx) => {
+
+        if (!item.hide) {
+            const todo = document.createElement('li');
+            const complete = item.completed ? true : false;
+            const LINE = "lineThrough";
+            if (complete == true) {
+                todo.innerHTML = ` <input class="${item.completed ? "checkbox done" : 'checkbox'}" id="checkbox-${indx}" data-id=${indx} type="checkbox" checked>
+                <div class="${item.completed ? "detail done" : " "} ${LINE}" >${item.content}</div>
                 <button class="remove" id="remove-${indx}" data-id=${indx}>X</button>`;
-            element.appendChild(li);
+                element.appendChild(todo);
+            } else {
+                todo.innerHTML = ` <input class="${item.completed ? "checkbox done" : 'checkbox'}" id="checkbox-${indx}" data-id=${indx} type="checkbox">
+                <div>${item.content}</div>
+                <button class="remove" id="remove-${indx}" data-id=${indx}>X</button>`;
+                element.appendChild(todo);
+            }
+
         }
     });
 }
@@ -117,106 +127,3 @@ function updateCounter(counter) {
     const elem = qs('.left');
     elem.innerHTML = `${counter} task left`;
 }
-
-
-
-// import * as storage from './ls.js';
-// import * as utes from './utilities.js';
-
-// let todoList = null;
-
-// const LINE_THROUGH = "lineThrough";
-
-// export default class ToDos {
-//     constructor(elementId, key) {
-//         this.elementId = utes.selecting(elementId);
-
-//         this.key = key;
-
-//         utes.onEnter('#add', this.addTodo);
-
-//     }
-
-//     addTodo() {
-
-//         const task = document.getElementById('addTodo').value;
-
-//         if (task != "") {
-//             saveToDo(task, 'myList');
-//         }
-
-//         this.listTodos();
-//     }
-
-//     listTodos() {
-//         renderTodoList(getTodos('myList'), this.elementId);
-//     }
-
-//     completeTodos() {}
-
-//     removeTodos() {}
-
-//     filterTodos() {}
-
-// }
-
-// function saveToDo(task, key) {
-//     let date = new Date();
-
-
-//     let todoItem = { id: date.getTime(), content: task, completed: false };
-
-//     if (todoList == null) {
-//         todoList = [todoItem];
-//     } else {
-//         todoList.push(todoItem);
-//     }
-
-//     storage.writeStorage(key, todoList);
-
-// }
-
-// function getTodos(key) {
-//     if (todoList == null) {
-//         let items = storage.readStorage(key);
-
-//         todoList = items;
-//     }
-// }
-
-
-// function renderTodoList(list, element) {
-
-//     if (list != null) {
-//         list.forEach(item => {
-
-//             const LINE = LINE_THROUGH;
-//             const complete = item.completed ? true : false;
-
-//             element = document.getElementById('list');
-//             let todo = document.createElement('li');
-
-//             todo.innerHTML = `<p>${item.content}</p>`;
-
-//             element.appendChild(todo);
-
-//             // if (complete == true) {
-//             //     todo.innerHTML = `
-//             //  <input id="${item.id}" type="checkbox" class="checks" checked>
-//             //  <p class="${LINE}">${item.content}</p>
-//             //  <input type="button" name="deleteBtn" id="delete" value="X">
-//             //  `;
-
-//             //     element.appendChild(todo);
-//             // } else if (complete == false) {
-//             //     todo.innerHTML = `
-//             //  <input id="${item.id}" type="checkbox" class="checks"/>
-//             //  <p>${item.content}</p>
-//             //  <input type="button" name="deleteBtn" id="delete" value="X">`;
-
-//             //     element.appendChild(todo);
-//             // }
-//         })
-//     }
-
-// }
