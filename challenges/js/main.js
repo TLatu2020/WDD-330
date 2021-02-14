@@ -1,4 +1,4 @@
-import Todos from './Todos.js';
+import Todos from './ToDos.js';
 
 // window.onload = function() {
 //     const ul = document.getElementById('list');
