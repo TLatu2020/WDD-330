@@ -34,7 +34,7 @@ function readStorage(key) {
 }
 
 const commentDisplay = `<div class="addComment">
-                            <h2>Add a Comment</h2>
+                            <h2>Add a comment</h2>
                             <input type="text" id="commentEntry" />
                             <button id="submitBtn">Comment</button>
                             </div>
@@ -45,14 +45,14 @@ const commentDisplay = `<div class="addComment">
 function renderCommentList(element, comments) {
     element.innerHTML = '';
 
-    comments.forEach(item => {
-        let list = document.createElement('li');
-        list.innerHTML = `
-                ${item.name}: ${item.comment}
-        `;
+    comments.forEach(el => {
 
-        element.appendChild(list);
-    })
+        let item = document.createElement('li');
+
+        item.innerHTML = `${el.name}: ${el.comment}`;
+
+        element.appendChild(item);
+    });
 }
 
 class Comments {
@@ -63,12 +63,15 @@ class Comments {
     }
 
     addSubmitListener(postName) {
-        document.getElementById(submitBtn).click = () => {
+
+        document.getElementById('submitBtn').onclick = () => {
+
             this.model.addComment(
                 postName,
                 document.getElementById('commentEntry').value
 
             );
+
             document.getElementById('commentEntry').value = '';
             this.showCommentList(postName);
         };
