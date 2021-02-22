@@ -55,6 +55,7 @@ function renderCommentList(element, comments) {
     });
 }
 
+
 class Comments {
     constructor(type, commentElementId) {
         this.type = type;
