@@ -45,6 +45,8 @@ const commentDisplay = `<div class="addComment">
 function renderCommentList(element, comments) {
     element.innerHTML = '';
 
+    console.log(comments);
+
     comments.forEach(el => {
 
         let item = document.createElement('li');
@@ -97,6 +99,7 @@ class Comments {
                 comments = [];
             }
             renderCommentList(parent.lastChild, comments);
+            // console.log(parent.lastChild);
         } catch (error) {
             console.log(error);
         }

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Activities show casing how difference between transitions and transform">
+    <title>CSS3 - Transitions and Transformation Activity</title>
+    <style>
+        .transform {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 75%;
+            margin: auto;
+        }
+        
+        .dukes {
+            /*Moves the image to the right and up*/
+            transform: translate(45px, -45px);
+            /*This will transform to work on older browsers*/
+            -webkit-transform: translate(45px, -45px);
+            /*iOS8, Android 4.4.3, BB10*/
+            -ms-transform: translate(45px, -45px);
+            /*IE9 only*/
+        }
+        
+        .dukes1 {
+            /*Seems like you can only have one if you are going to be useing the X Y method. The first one will be cancelled out by the second.*/
+            transform: translateX(45px);
+            transform: translateY(-30px);
+        }
+        
+        .transitionTest:hover {
+            color: blue;
+            transform: scale(1.5);
+            /*This has two transitions on the one element. It focuses on the transform property and its timing and the timing of the color property*/
+            transition: transform 0.2s ease-out 50ms, color 0.5s linear 75ms;
+        }
+        
+        .dukes2:hover {
+            /*Stretches the image width, and shrinks the height of the image*/
+            transform: scale(1.5, 0.25);
+        }
+        
+        .dukes3:hover {
+            /*Rotates the image 10 degrees to the right*/
+            transform: rotate(50deg);
+            /*Transition example that focuses on transform, for the duration of 0.2s, with ease-out timing function, and a delay of 50 milliseconds.*/
+            transition: transform 0.2s ease-out 50ms;
+        }
+        
+        .dukes4 {
+            transform: skew(15deg, 4deg);
+        }
+        
+        .dukes5:hover {
+            /*transform-origin changes where the center point the rotation occurs*/
+            transform: rotate(50deg);
+            transform-origin: 25% 25%;
+        }
+        
+        .transitions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Transform and Transitions Activity</h1>
+    <h2>Transform</h2>
+    <div class="transform">
+
+        <section>
+            <h3>Transform: Transitions</h3>
+            <br>
+            <br>
+            <div>
+                <img class="dukes" src="../images/dukes.png" alt="Image of man in fighting position">
+            </div>
+            <div>
+                <img class="dukes1" src="../images/dukes.png" alt="Image of man in fighting position">
+            </div>
+        </section>
+
+        <section>
+            <h3>Transform: Scaling</h3>
+            <div>
+                <img class="dukes2" src="../images/dukes.png" alt="Image of man in fighting position">
+                <p class="transitionTest">This is a test of multiple transition!</p>
+            </div>
+        </section>
+
+        <section>
+            <h3>Transform: Rotation</h3>
+            <img class="dukes3" src="../images/dukes.png" alt="Image of man in fighting position">
+        </section>
+
+        <section>
+            <h3>Transform: Skew</h3>
+            <img class="dukes4" src="../images/dukes.png" alt="Image of man in fighting position">
+        </section>
+
+        <section>
+            <h3>Transform-Origin</h3>
+            <img class="dukes5" src="../images/dukes.png" alt="Image of man in fighting position">
+        </section>
+    </div>
+    <div class="transitions">
+        <section>
+            <h3>Transition</h3>
+            <img class="dukes3" src="../images/dukes.png" alt="Image of man in fighting position">
+        </section>
+
+        <section>
+            <h3>Transition - multiple transitions</h3>
+            <div>
+                <img class="dukes2" src="../images/dukes.png" alt="Image of man in fighting position">
+                <p class="transitionTest">This is a test of multiple transition!</p>
+            </div>
+        </section>
+    </div>
+
+
+
+</body>
+
+</html>
