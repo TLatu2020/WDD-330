@@ -65,19 +65,36 @@
             if (element.propertyName !== 'transform') return;
             console.log(element.propertyName)
             element.target.classList.remove('playing');
+
         }
 
         function playSound(element) {
             const audio = document.querySelector(`audio[data-key="${element.keyCode}"]`);
             const key = document.querySelector(`div[data-key="${element.keyCode}"]`);
 
+            console.log(key);
+
             console.log(element.keyCode);
 
             if (!audio) return;
 
             key.classList.add('playing');
+
             audio.currentTime = 0;
             audio.play();
+
+            let container = document.querySelector("div[data-key='" + event.keyCode + "']");
+            if (container.getAttribute("times") >= 9) {
+                container.setAttribute("times", 0);
+                container.style.transform = "translateY(0)";
+            } else {
+                let times = container.getAttribute("times");
+                times++;
+                container.setAttribute("times", times);
+                container.style.transform = "translateY(" + times * 10 + "px)";
+                console.log(container.style.transform);
+                console.log(times);
+            }
         }
 
         const press = Array.from(document.querySelectorAll('.key'));
