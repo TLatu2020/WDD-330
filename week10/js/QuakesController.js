@@ -21,7 +21,7 @@ export default class QuakesController {
         // use this as a place to grab the element identified by this.parent, do the initial call of this.initPos(), and display some quakes by calling this.getQuakesByRadius()
         this.parentElement = document.querySelector(this.parent);
         await this.initPos();
-        this.getQuakesByRadius(100);
+        this.getQuakesByRadius(2000);
     }
     async initPos() {
         // if a position has not been set
@@ -54,7 +54,7 @@ export default class QuakesController {
         // render the list to html
         this.quakesView.renderQuakeList(quakeList, this.parentElement);
         // add a listener to the new list of quakes to allow drill down in to the details
-        this.parentElement.addEventListener('touchend', e => {
+        this.parentElement.addEventListener('click', e => {
             this.getQuakeDetails(e.target.dataset.id);
         });
     }
