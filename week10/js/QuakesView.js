@@ -17,9 +17,9 @@
 
           listElement.innerHTML = quakeList.features.map(quake => {
                   return `
-             ${quake.properties.title}, ${new Date(
+                  <li>Location: ${quake.properties.title} <br> Date: ${new Date(
                      quake.properties.time
-                  )}
+                  )}</li>
              `;
               })
               .join('');
