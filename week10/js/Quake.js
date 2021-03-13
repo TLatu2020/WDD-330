@@ -12,7 +12,6 @@ export default class Quake {
         // use the getJSON function and the position provided to build out the correct URL to get the data we need.  Store it into this._quakes, then return it
         const query = this.baseUrl + `&latitude=${position.lat}&longitude=${position.lon}&maxradiuskm=${radius}`;
         this._quakes = await getJSON(query);
-        console.log(this._quakes);
         return this._quakes;
 
     }

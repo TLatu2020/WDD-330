@@ -44,7 +44,7 @@ export default class QuakesController {
         // this method provides the glue between the model and view. Notice it first goes out and requests the appropriate data from the model, then it passes it to the view to be rendered.
         //set loading message
         this.parentElement.innerHTML = `
-        Loading...
+        <li>Loading...</li>
         `;
         // get the list of quakes in the specified radius of the location
         const quakeList = await this.quakes.getEarthQuakesByRadius(
@@ -62,6 +62,6 @@ export default class QuakesController {
         // get the details for the quakeId provided from the model, then send them to the view to be displayed
         const quake = this.quakes.getQuakeById(quakeId);
         this.quakesView.renderQuake(quake, this.parentElement);
-        console.log(parentElement);
+
     }
 }
