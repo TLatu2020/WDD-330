@@ -1,37 +1,37 @@
 const links = [{
         label: "Week1 notes",
-        url: "week1/index.html"
+        url: "week1"
     },
     {
         label: "Week2 notes",
-        url: "week2/index.html"
+        url: "week2"
     },
     {
         label: "Week3 notes",
-        url: "week3/index.html"
+        url: "week3"
     },
     {
         label: "Week4 notes",
-        url: "week4/index.html"
+        url: "week4"
     }, {
         label: "Week5 notes",
-        url: "week5/index.html"
+        url: "week5"
     },
     {
         label: "Week6 notes",
-        url: "week6/index.html"
+        url: "week6"
     },
     {
         label: "Week7 notes",
-        url: "week7/index.html"
+        url: "week7"
     },
     {
         label: "Week8 notes",
-        url: "week8/index.html"
+        url: "week8"
     },
     {
         label: "Week9 notes",
-        url: "week9/index.html"
+        url: "week9"
     },
     {
         label: "Week10 notes",
