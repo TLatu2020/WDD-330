@@ -14,6 +14,8 @@ function getShips(url) {
 
 function renderShipList(ships, shipListElement) {
 
+    console.log(ships);
+
     const list = shipListElement.children[1];
     list.innerHTML = "";
 
