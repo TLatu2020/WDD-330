@@ -1,7 +1,6 @@
 export function getJSON(url) {
     return fetch(url)
         .then(function(response) {
-            console.log(response);
             if (!response.ok) {
                 throw Error(response.statusText);
             } else {
@@ -11,6 +10,8 @@ export function getJSON(url) {
         .catch(function(error) {
             console.log(error);
         });
+
+
 }
 
 export const getLocation = function(options) {

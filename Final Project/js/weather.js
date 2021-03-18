@@ -1,53 +1,71 @@
-function getJSON(url) {
-    return fetch(url)
-        .then(function(response) {
-            if (!response.ok) {
-                throw Error(response.statusText);
-            } else {
-                return response.json();
-            }
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
-}
+import { getJSON } from './utilities.js'
 
-const getLocation = function(options) {
-    return new Promise(function(resolve, reject) {
-        navigator.geolocation.getCurrentPosition(resolve, reject, options);
-    });
-};
+export default class Weather {
+    constructor() {
+        this.baseUrl = "https://api.openweathermap.org/data/2.5/onecall?";
 
-class Weather {
-    constructor(position = null) {
-        this.position = position || {
-            lat: 0,
-            lon: 0
-        };
+        this._weather = [];
     }
-    async init() {
-        if (this.position.lat === 0) {
-            try {
-                const positionFull = await getLocation();
-                console.log(positionFull);
+    async getWeatherByPosition(position) {
+        const query = this.baseUrl + `lat=${position.lat}&lon=${position.lon}&appid=7cbff6ff955122bea5c143b87e2663a5&units=imperial`;
 
-                this.position.lat = positionFull.coords.latitude;
-                this.position.lon = positionFull.coords.longitude;
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    }
-    async getWeatherByPosition() {
-
+        this._weather = await getJSON(query);
+        console.log(query);
+        return this._weather;
     }
 }
 
-class WeatherView {
-    renderWeather() {
+// function getJSON(url) {
+//     return fetch(url)
+//         .then(function(response) {
+//             if (!response.ok) {
+//                 throw Error(response.statusText);
+//             } else {
+//                 return response.json();
+//             }
+//         })
+//         .catch(function(error) {
+//             console.log(error);
+//         });
 
-    }
-}
+
+// }
+
+// const getLocation = function(options) {
+//     return new Promise(function(resolve, reject) {
+//         navigator.geolocation.getCurrentPosition(resolve, reject, options);
+//     });
+// };
+
+
+
+// class WeatherControl {
+//     constructor(position = null) {
+//         this.position = position || {
+//             lat: 0,
+//             lon: 0
+//         };
+//     }
+//     async init() {
+//         if (this.position.lat === 0) {
+//             try {
+//                 const positionFull = await getLocation();
+//                 console.log(positionFull);
+
+//                 this.position.lat = positionFull.coords.latitude;
+//                 this.position.lon = positionFull.coords.longitude;
+//             } catch (error) {
+//                 console.log(error);
+//             }
+//         }
+//     }
+// }
+
+// class WeatherView {
+//     renderWeather(weatherList) {
+//         console.log(weatherList);
+//     }
+// }
 
 
 

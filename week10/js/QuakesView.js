@@ -27,6 +27,7 @@
 
       }
       renderQuake(quake, element) {
+          console.log(quake);
 
           const quakeProperties = Object.entries(quake.properties);
 
