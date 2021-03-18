@@ -43,27 +43,27 @@ export default class QuakesController {
     }
 
     async getQuakesByRadius(radius = 100) {
-        // this method provides the glue between the model and view. Notice it first goes out and requests the appropriate data from the model, then it passes it to the view to be rendered.
-        //set loading message
-        this.parentElement.innerHTML = `
+            // this method provides the glue between the model and view. Notice it first goes out and requests the appropriate data from the model, then it passes it to the view to be rendered.
+            //set loading message
+            this.parentElement.innerHTML = `
         <li>Loading...</li>
         `;
-        // get the list of quakes in the specified radius of the location
-        const quakeList = await this.quakes.getEarthQuakesByRadius(
-            this.position,
-            radius
-        );
-        // render the list to html
-        this.quakesView.renderQuakeList(quakeList, this.parentElement);
-        // add a listener to the new list of quakes to allow drill down in to the details
-        this.parentElement.addEventListener('click', e => {
-            this.getQuakeDetails(e.target.dataset.id);
-        });
-    }
-    async getQuakeDetails(quakeId) {
-        // get the details for the quakeId provided from the model, then send them to the view to be displayed
-        const quake = this.quakes.getQuakeById(quakeId);
-        this.quakesView.renderQuake(quake, this.parentElement);
+            // get the list of quakes in the specified radius of the location
+            const quakeList = await this.quakes.getEarthQuakesByRadius(
+                this.position,
+                radius
+            );
+            // render the list to html
+            this.quakesView.renderQuakeList(quakeList, this.parentElement);
+            // add a listener to the new list of quakes to allow drill down in to the details
+            this.parentElement.addEventListener('click', e => {
+                this.getQuakeDetails(e.target.dataset.id);
+            });
+        }
+        // async getQuakeDetails(quakeId) {
+        //     // get the details for the quakeId provided from the model, then send them to the view to be displayed
+        //     const quake = this.quakes.getQuakeById(quakeId);
+        //     this.quakesView.renderQuake(quake, this.parentElement);
 
-    }
+    // }
 }

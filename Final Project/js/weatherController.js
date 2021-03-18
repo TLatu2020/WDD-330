@@ -21,14 +21,16 @@ export default class WeatherControl {
 
                 this.position.lat = positionFull.coords.latitude;
                 this.position.lon = positionFull.coords.longitude;
+
             } catch (error) {
                 console.log(error);
             }
         }
     }
 
-    async getWeatherByPosition() {
-        const weatherList = await this.weather.getWeatherByPosition(this.position);
+    async getWeathersByPosition(position = this.position) {
+        const weatherList = await this.weather.getWeatherByPosition(position);
+        console.log(weatherList);
         this.weatherView.renderWeather(weatherList);
     }
 }

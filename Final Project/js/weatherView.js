@@ -1,5 +1,6 @@
 export default class WeatherView {
     renderWeather(weatherList) {
+        console.log(weatherList);
         weatherList.forEach(element => {
             let card = document.createElement('section');
             let weekDay = document.createElement('p');
