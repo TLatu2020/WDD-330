@@ -120,7 +120,7 @@
 //     })
 
 
-navigator.geolocation.getCurrentPosition(position => {
+const getLocation = navigator.geolocation.getCurrentPosition(position => {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
 
@@ -131,12 +131,13 @@ navigator.geolocation.getCurrentPosition(position => {
         .then((jsObject) => {
             console.log(jsObject);
 
-
-
-
             const fiveDays = jsObject.daily;
 
-            console.log(fiveDays);
+            console.log(fiveDays.timezone);
+
+            const name = document.getElementById('location');
+
+            name.innerHTML = `<h2>${jsObject.timezone}</h2>`;
 
             for (i = 0; i < 1; i++) {
                 fiveDays.forEach(forecast => {
