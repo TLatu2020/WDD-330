@@ -1,7 +1,7 @@
 export function getJSON(url) {
     return fetch(url)
         .then(function(response) {
-            console.log(response);
+
             if (!response.ok) {
                 throw Error(response.statusText);
             } else {

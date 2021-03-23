@@ -11,7 +11,12 @@ export default class WeatherControl {
         };
 
         this.weather = new Weather();
+
+        console.log(this.weather);
+
         this.weatherView = new WeatherView();
+
+
     }
     async init() {
         if (this.position.lat === 0) {
@@ -28,9 +33,9 @@ export default class WeatherControl {
         }
     }
 
-    async getWeathersByPosition(position = this.position) {
-        const weatherList = await this.weather.getWeatherByPosition(position);
-        console.log(weatherList);
-        this.weatherView.renderWeather(weatherList);
-    }
+    // async getWeathersByPosition(position = this.position) {
+    //     const weatherList = await this.weather.getWeatherByPosition(position);
+    //     console.log(weatherList);
+    //     this.weatherView.renderWeather(weatherList);
+    // }
 }

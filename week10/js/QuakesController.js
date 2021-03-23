@@ -15,6 +15,7 @@ export default class QuakesController {
         };
         // this is how our controller will know about the model and view...we add them right into the class as members.
         this.quakes = new Quake();
+        console.log(this.quakes);
         this.quakesView = new QuakesView();
     }
     async init() {
@@ -30,7 +31,7 @@ export default class QuakesController {
                 // try to get the position using getLocation()
                 const positionFull = await getLocation();
 
-                console.log(getLocation());
+
 
                 // if we get the location back then set the latitude and longitude into this.position
                 this.position.lat = positionFull.coords.latitude;

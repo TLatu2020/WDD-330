@@ -1,19 +1,19 @@
-import { getJSON } from './utilities.js'
+// import { getJSON } from './utilities.js'
 
-export default class Weather {
-    constructor() {
-        this.baseUrl = "https://api.openweathermap.org/data/2.5/onecall?";
+// export default class Weather {
+//     constructor() {
+//         this.baseUrl = "https://api.openweathermap.org/data/2.5/onecall?";
 
-        this._weather = [];
-    }
-    async getWeatherByPosition(position) {
-        const query = this.baseUrl + `lat=${position.lat}&lon=${position.lon}&appid=7cbff6ff955122bea5c143b87e2663a5&units=imperial`;
+//         this._weather = [];
+//     }
+//     async getWeatherByPosition(position) {
+//         const query = this.baseUrl + `lat=${position.lat}&lon=${position.lon}&appid=7cbff6ff955122bea5c143b87e2663a5&units=imperial`;
 
-        this._weather = await getJSON(query);
-        console.log(query);
-        return this._weather;
-    }
-}
+//         this._weather = await getJSON(query);
+//         console.log(query);
+//         return this._weather;
+//     }
+// }
 
 // function getJSON(url) {
 //     return fetch(url)
@@ -119,48 +119,57 @@ export default class Weather {
 //         }
 //     })
 
-// const forecastURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${this.position.lat}&lon=${this.position.lon}&appid=7cbff6ff955122bea5c143b87e2663a5&units=imperial`;
 
-//  fetch(forecastURL)
-//      .then((response) => response.json())
-//      .then((jsObject) => {
-//          console.log(jsObject);
+navigator.geolocation.getCurrentPosition(position => {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
 
-//          const fiveDays = jsObject.daily;
+    const forecastURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=7cbff6ff955122bea5c143b87e2663a5&units=imperial`;
 
-//          console.log(fiveDays);
-
-//          for (i = 0; i < 1; i++) {
-//              fiveDays.forEach(forecast => {
-//                  console.log(forecast);
-
-//                  let card = document.createElement('section');
-//                  let weekDay = document.createElement('p');
-//                  let image = document.createElement('img');
-//                  let temp = document.createElement('p');
-
-//                  var date = new Date(forecast.dt);
-//                  var day = date.toString();
-//                  day = day.slice(0, 3);
-//                  weekDay.textContent = day;
+    fetch(forecastURL)
+        .then((response) => response.json())
+        .then((jsObject) => {
+            console.log(jsObject);
 
 
 
 
-//                  image.setAttribute('src', 'https://openweathermap.org/img/wn/' + forecast.weather[0].icon + '@2x.png');
-//                  image.setAttribute('alt', forecast.weather[0].description);
+            const fiveDays = jsObject.daily;
 
-//                  temp.textContent = Math.round(forecast.temp.day) + " °F";
+            console.log(fiveDays);
 
-//                  card.className = "days";
+            for (i = 0; i < 1; i++) {
+                fiveDays.forEach(forecast => {
+                    console.log(forecast);
 
-//                  card.appendChild(weekDay);
-//                  card.appendChild(image);
-//                  card.appendChild(temp);
+                    let card = document.createElement('section');
+                    let weekDay = document.createElement('p');
+                    let image = document.createElement('img');
+                    let temp = document.createElement('p');
+
+                    var date = new Date(forecast.dt);
+                    var day = date.toString();
+                    day = day.slice(0, 3);
+                    weekDay.textContent = day;
 
 
 
-//                  document.querySelector('div.forecast-cards').appendChild(card);
-//              })
-//          }
-//      })
+
+                    image.setAttribute('src', 'https://openweathermap.org/img/wn/' + forecast.weather[0].icon + '@2x.png');
+                    image.setAttribute('alt', forecast.weather[0].description);
+
+                    temp.textContent = Math.round(forecast.temp.day) + " °F";
+
+                    card.className = "days";
+
+                    card.appendChild(weekDay);
+                    card.appendChild(image);
+                    card.appendChild(temp);
+
+
+
+                    document.querySelector('div.forecast-cards').appendChild(card);
+                })
+            }
+        })
+});
