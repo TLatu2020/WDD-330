@@ -1,5 +1,12 @@
-import WeatherController from './weatherController.js';
+import Weather from './weather.js';
 
-const myWeatherController = new WeatherController();
+const myWeatherController = new Weather();
 
-myWeatherController.init();
+myWeatherController;
+
+
+WebFont.load({
+    google: {
+        families: ['Roboto Slab', 'Montserrat']
+    }
+});

@@ -1,0 +1,19 @@
+h1,
+h2 {
+    font-family: 'Roboto Slab', serif;
+    text-align: center;
+}
+
+p {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.forecast-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+}
+
+.days {
+    text-align: center;
+}
