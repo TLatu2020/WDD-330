@@ -17,9 +17,21 @@
         <h1>Weather This or That!</h1>
     </header>
     <main>
+        <div id="location"></div>
+
+        <div class="currentWeather">
+            <h3>Weather Summary</h3>
+            <p>Currently: <span id="currentCondition"></span></p>
+            <p>Temperature: <span id="currentTemp"></span></p>
+            <p>High: <span id="high-temp"></span></p>
+            <p>Humidity: <span id="humidity"></span></p>
+        </div>
+
+
+
         <div class="threeday">
             <h2>Forecast</h2>
-            <div id="location"></div>
+
             <div class="forecast-cards">
 
             </div>
@@ -28,7 +40,7 @@
             <form>
                 <h2>Report Weather Changes</h2>
                 <fieldset>
-                    <label>Weather Change<input type="text" name="weatherChange"></label>
+                    <label class="top">Weather Change<textarea name="weatherChange" rows="5" cols="45"></textarea></label>
                     <input type="button" value="Report Change">
                 </fieldset>
             </form>
