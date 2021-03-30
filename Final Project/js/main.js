@@ -1,6 +1,6 @@
-import { getLocation } from './weather.js';
+import { weatherByLocation } from './weather.js';
 
-const myWeatherController = getLocation;
+const myWeatherController = weatherByLocation;
 
 myWeatherController;
 

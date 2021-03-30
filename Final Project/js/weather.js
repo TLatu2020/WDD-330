@@ -1,4 +1,11 @@
-export const getLocation = navigator.geolocation.getCurrentPosition(position => {
+import Comments from './storage.js';
+
+export const weatherByLocation = navigator.geolocation.getCurrentPosition(position => {
+
+    const comments = new Comments();
+
+    console.log(comments);
+
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
 
@@ -10,16 +17,13 @@ export const getLocation = navigator.geolocation.getCurrentPosition(position => 
         .then((response) => response.json())
         .then((jsObject) => {
 
-            let temp = jsObject.main.temp;
-            let windSpeed = jsObject.wind.speed;
-
             document.getElementById('currentCondition').textContent = jsObject.weather[0].main;
 
             //Current Temp
-            document.getElementById('currentTemp').textContent = Math.round(jsObject.main.temp) + " °F";
+            document.getElementById('currentTemp').textContent = Math.round(jsObject.main.temp) + " °C";
 
             //Highest Temp
-            document.getElementById('high-temp').textContent = Math.round(jsObject.main.temp_max) + " °F";
+            document.getElementById('high-temp').textContent = Math.round(jsObject.main.temp_max) + " °C";
 
             //Humidity Level
             document.getElementById('humidity').textContent = jsObject.main.humidity + " %";
