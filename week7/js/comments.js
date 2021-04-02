@@ -45,7 +45,7 @@ const commentDisplay = `<div class="addComment">
 function renderCommentList(element, comments) {
     element.innerHTML = '';
 
-    console.log(comments);
+    console.log(element);
 
     comments.forEach(el => {
 

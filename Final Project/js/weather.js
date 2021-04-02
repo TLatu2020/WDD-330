@@ -4,6 +4,12 @@ export const weatherByLocation = navigator.geolocation.getCurrentPosition(positi
 
     const comments = new Comments();
 
+    const display = document.getElementById('comments');
+
+    display.appendChild = comments;
+
+
+
     console.log(comments);
 
     const lat = position.coords.latitude;

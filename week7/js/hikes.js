@@ -34,9 +34,14 @@ const imgBasePath = "//byui-cit.github.io/cit261/examples/";
 
 export default class Hikes {
     constructor(elementId) {
+
+        console.log(elementId);
         this.parentElement = document.getElementById(elementId);
 
+        console.log(this.parentElement);
+
         this.backButton = this.buildBackButton();
+
 
         this.comments = new Comments('hikes', 'comments');
     }
@@ -59,6 +64,8 @@ export default class Hikes {
         this.backButton.classList.add('hidden');
 
         this.comments.showCommentList();
+
+        console.log(this.comments.showCommentList());
     }
 
     showOneHike(hikeName) {

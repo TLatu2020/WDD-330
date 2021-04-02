@@ -33,8 +33,13 @@ function readStorage(key) {
     return JSON.parse(window.localStorage.getItem(key));
 }
 
-const commentDisplay = `<h2>Comments</h2>
-                        <ul class="comments"></ul>`;
+const commentDisplay = `<div class="addComment">
+                        <h2>Report Weather Change</h2>
+                        <input type="text" id="commentEntry"/>
+                        <button id="submitBtn">Report</button>
+                        </div>
+                        <h2>Comments</h2>
+                        <ul class='comments'></ul>`;
 
 function renderCommentList(element, comments) {
     element.innerHTML = '';
@@ -52,8 +57,9 @@ function renderCommentList(element, comments) {
 
 class Comments {
     constructor(type, commentElementId) {
+        console.log(type);
         this.type = type;
-        this.commentElementId = commentElementId;
+        commentElementId = document.getElementById('comments');
         this.model = new CommentModel(this.type);
     }
 
