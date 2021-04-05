@@ -1,5 +1,6 @@
 class CommentModel {
     constructor(type) {
+        console.log(type);
         this.type = type;
 
         this.comments = readStorage(this.type) || [];
@@ -26,6 +27,7 @@ class CommentModel {
 }
 
 function writeStorage(key, data) {
+
     window.localStorage.setItem(key, JSON.stringify(data));
 }
 
@@ -45,8 +47,6 @@ const commentDisplay = `<div class="addComment">
 function renderCommentList(element, comments) {
     element.innerHTML = '';
 
-    console.log(element);
-
     comments.forEach(el => {
 
         let item = document.createElement('li');
@@ -60,13 +60,14 @@ function renderCommentList(element, comments) {
 
 class Comments {
     constructor(type, commentElementId) {
+        console.log(type);
         this.type = type;
         this.commentElementId = commentElementId;
         this.model = new CommentModel(this.type);
     }
 
     addSubmitListener(postName) {
-
+        console.log(postName);
         document.getElementById('submitBtn').onclick = () => {
 
             this.model.addComment(

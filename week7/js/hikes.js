@@ -102,6 +102,7 @@ export default class Hikes {
 
 
 function renderHikeList(parent, hikes) {
+
     hikes.forEach(hike => {
         parent.appendChild(renderOneHikeLight(hike));
     });

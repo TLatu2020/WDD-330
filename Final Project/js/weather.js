@@ -2,16 +2,6 @@ import Comments from './storage.js';
 
 export const weatherByLocation = navigator.geolocation.getCurrentPosition(position => {
 
-    const comments = new Comments();
-
-    const display = document.getElementById('comments');
-
-    display.appendChild = comments;
-
-
-
-    console.log(comments);
-
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
 
@@ -38,8 +28,6 @@ export const weatherByLocation = navigator.geolocation.getCurrentPosition(positi
     fetch(forecastURL)
         .then((response) => response.json())
         .then((jsObject) => {
-            console.log(jsObject);
-
 
             const fiveDays = jsObject.list.filter(item => item.dt_txt.includes('18:00:00'));
 
@@ -79,8 +67,70 @@ export const weatherByLocation = navigator.geolocation.getCurrentPosition(positi
 
 
 
+
+
+
                     document.querySelector('div.forecast-cards').appendChild(card);
                 })
             }
         })
+
 });
+
+export default class Reports {
+    constructor() {
+        this.comments = new Comments();
+
+        console.log(this.comments);
+
+        this.commentListener();
+
+        this.showComment();
+    }
+
+    //load all comment
+    showComment() {
+        let listcomment = this.comments.readStorage();
+
+        if (listcomment.length > 0) {
+            let commentList = document.querySelector('#commentLists');
+            let ulCommentList = document.createElement('ul');
+
+            commentList.textContent = "";
+            let commenth2 = document.createElement('h3');
+            commenth2.textContent = "All Comments";
+            commentList.appendChild(commenth2);
+
+            listcomment.forEach(comment => {
+                let liList = document.createElement('li');
+                const mydate = new Date(comment.date);
+                liList.innerHTML = `<span class="commentContent">${comment.comment}<span>
+              <span class="commentName">by: ${comment.name} - ${comment.email}</span> 
+              <span class="commentDate">${mydate.getDate() + ' ' + mydate.toLocaleString('en-us', { month: "short" }) + ' ' + mydate.getFullYear()}</span>`;
+                ulCommentList.appendChild(liList);
+            });
+            commentList.appendChild(ulCommentList)
+
+        }
+
+    }
+
+    //create listener
+    commentListener() {
+        const addComment = document.querySelector('#addComment');
+
+
+        addComment.addEventListener("click", event => {
+            const content = document.querySelector('#newComment');
+
+            if (content.value) {
+                this.comments.addComment(content.value);
+                content.value = "";
+                this.showComment();
+
+            } else {
+                alert('add some Content');
+            }
+        });
+    }
+}
