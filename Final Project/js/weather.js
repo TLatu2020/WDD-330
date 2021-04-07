@@ -12,8 +12,19 @@ export const weatherByLocation = navigator.geolocation.getCurrentPosition(positi
     fetch(currentURL)
         .then((response) => response.json())
         .then((jsObject) => {
+            console.log(jsObject);
 
-            document.getElementById('currentCondition').textContent = jsObject.weather[0].main;
+            let span = document.getElementsByClassName('icon');
+
+            let icon = jsObject.weather[0].icon;
+
+            let img = document.createElement('img');
+
+            img.setAttribute('src', 'https://openweathermap.org/img/wn/' + icon + '@2x.png');
+
+            document.querySelector('span.icon').appendChild(img);
+
+
 
             //Current Temp
             document.getElementById('currentTemp').textContent = Math.round(jsObject.main.temp) + " °C";
@@ -33,7 +44,7 @@ export const weatherByLocation = navigator.geolocation.getCurrentPosition(positi
 
             const name = document.getElementById('location');
 
-            name.innerHTML = `<h2>${jsObject.city.name}</h2>`;
+            name.innerHTML = `<h2 id="city">${jsObject.city.name}</h2>`;
 
 
 
@@ -92,20 +103,22 @@ export default class Reports {
     showComment() {
         let listcomment = this.comments.readStorage();
 
+        console.log(listcomment);
+
         if (listcomment.length > 0) {
             let commentList = document.querySelector('#commentLists');
             let ulCommentList = document.createElement('ul');
 
             commentList.textContent = "";
             let commenth2 = document.createElement('h3');
-            commenth2.textContent = "All Comments";
+            commenth2.textContent = "Weather Report List";
             commentList.appendChild(commenth2);
 
             listcomment.forEach(comment => {
                 let liList = document.createElement('li');
                 const mydate = new Date(comment.date);
-                liList.innerHTML = `<span class="commentContent">${comment.comment}<span>
-              <span class="commentName">by: ${comment.name} - ${comment.email}</span> 
+                liList.innerHTML = `<span class="commentContent">${comment.comment} - <span>
+                
               <span class="commentDate">${mydate.getDate() + ' ' + mydate.toLocaleString('en-us', { month: "short" }) + ' ' + mydate.getFullYear()}</span>`;
                 ulCommentList.appendChild(liList);
             });

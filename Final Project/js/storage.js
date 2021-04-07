@@ -6,9 +6,10 @@ function writeStorage(key, data) {
 
 class Comments {
     constructor() {
-        this.type = "city"
+        this.type = document.getElementById('city');
+        console.log(this.type);
+        // this.type = "city"
 
-        //  const commentElementId = document.getElementById('comments');
         this.comments = this.readStorage(this.type) || [];
 
         console.log(this.comments);

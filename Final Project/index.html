@@ -7,42 +7,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Current weather and weather change report">
     <title>Weather This or That!</title>
-    <!-- <script type="module" src="js/main.js" defer></script> -->
     <script type="module" src="js/main.js" defer></script>
     <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
     <header>
+        <img src="image/weathersdownunder-medium.png" alt="Logo">
         <h1>Weather This or That!</h1>
     </header>
     <main>
-        <div id="location"></div>
+        <div class="weather">
+            <div id="location"></div>
 
-        <div class="currentWeather">
-            <h3>Weather Summary</h3>
-            <p>Currently: <span id="currentCondition"></span></p>
-            <p>Temperature: <span id="currentTemp"></span></p>
-            <p>High: <span id="high-temp"></span></p>
-            <p>Humidity: <span id="humidity"></span></p>
-        </div>
+            <div class="currentWeather">
+                <h3>Weather Summary</h3>
+                <span class="icon"></span>
+                <p>Currently: <span id="currentTemp"></span></p>
+                <p>High: <span id="high-temp"></span></p>
+                <p>Humidity: <span id="humidity"></span></p>
+            </div>
 
 
 
-        <div class="threeday">
-            <h2>Forecast</h2>
+            <div class="forecast">
+                <h2>Forecast</h2>
 
-            <div class="forecast-cards">
+                <div class="forecast-cards">
 
+                </div>
             </div>
         </div>
 
-        <div class="weatherChange"></div>
 
         <section>
             <div class="comments">
-                <textarea id="newComment" rows="4" cols="50"></textarea>
-                <input type="button" id="addComment" value="Report">
+                <h2>Report Weather Change</h2>
+                <textarea id="newComment" rows="4" cols="50" placeholder="Location - Weather Change"></textarea>
+                <input type="button" id="addComment" class="submitBtn" value="Report">
             </div>
             <div id="commentLists"></div>
         </section>

@@ -1,5 +1,20 @@
+body {
+    background-color: #e7d9d9;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    color: #219;
+}
+
+header img {
+    padding: 10px;
+}
+
 h1,
-h2 {
+h2,
+h3 {
     font-family: 'Roboto Slab', serif;
     text-align: center;
 }
@@ -8,14 +23,39 @@ p {
     font-family: 'Montserrat', sans-serif;
 }
 
+
+/* Weather */
+
+.weather {
+    max-width: 45rem;
+    margin: auto;
+    background-color: #1d185c;
+    color: white;
+}
+
+.weather h2 {
+    color: #ffd30d;
+}
+
 .currentWeather {
     text-align: center;
+}
+
+.forecast {
+    padding-bottom: 10px;
 }
 
 .forecast-cards {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     justify-items: center;
+    max-width: min-content;
+    margin: auto;
+}
+
+.forecast-cards>section:nth-child(odd) {
+    background: #e7d9d9;
+    color: black;
 }
 
 .days {
@@ -25,13 +65,45 @@ p {
 
 /* Form */
 
-textarea {
-    padding: .75rem;
-    margin: auto;
+.comments {
+    display: grid;
+    justify-content: center;
 }
 
 textarea {
+    padding: .75rem;
     display: block;
+    margin-bottom: 15px;
+}
+
+.submitBtn {
+    width: 10rem;
+    padding: .65rem 1.25rem;
+    margin: auto;
+}
+
+
+/* Comments */
+
+#commentLists {
+    display: grid;
+    justify-content: center;
+    padding: 15px;
+}
+
+#commentLists h3 {
+    margin-top: 5px;
+}
+
+#commentLists ul {
+    padding-left: 0px;
+    margin: 0px;
+}
+
+#commentLists ul li {
+    list-style-type: none;
+    border-bottom: 1px solid;
+    padding: 20px 0 20px 0;
 }
 
 
