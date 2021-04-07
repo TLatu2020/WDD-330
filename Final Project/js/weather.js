@@ -68,7 +68,7 @@ export const weatherByLocation = navigator.geolocation.getCurrentPosition(positi
                     image.setAttribute('src', 'https://openweathermap.org/img/wn/' + forecast.weather[0].icon + '@2x.png');
                     image.setAttribute('alt', forecast.weather[0].description);
 
-                    temp.textContent = Math.round(forecast.main.temp) + " °F";
+                    temp.textContent = Math.round(forecast.main.temp) + " °C";
 
                     card.className = "days";
 
